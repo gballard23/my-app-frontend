@@ -1,35 +1,21 @@
 import '../App.css';
-import { Route, Switch } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 
 
+
 function App() {
+  const [company, setCompany] = useState([]);
+  
+    useEffect(() => {
+      fetch('http://localhost:9292/companies')
+        .then((r) => r.json())
+        .then((data) => setCompany(data))
+    }, [])
+
+    console.log(company)
+
   return (
     <div className="App">
-      <NavBar />
-      <Switch>
-        <Route>
-    
-        </Route> 
-        <Route>
-          
-        </Route>
-        <Route>
-          
-        </Route>
-        <Route>
-          
-        </Route>
-        <Route>
-          
-        </Route>
-        <Route>
-          
-        </Route>
-        <Route>
-          
-        </Route>
-      </Switch>
 
       
     </div>
