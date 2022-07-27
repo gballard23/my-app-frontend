@@ -5,7 +5,12 @@ function SubCard({subs, coms}){
     
 
     return(
-        <div>
+        <div className="subcard">
+            <h1><strong>{subs.name}</strong></h1>
+            <div>
+                <h3>net_worth:{subs.net_worth}</h3>
+            </div>
+           
 
         </div>
     )
