@@ -10,8 +10,6 @@ function SubsidiaryList({subs}){
     const sub1 = allSubs[0]
     const sub2 = allSubs[1]
 
-    console.log(sub1)
-    console.log(sub2)
 
     const merge = (y, z = 6) => {
         for(let i = 0; i < z.length; i++){
@@ -21,7 +19,8 @@ function SubsidiaryList({subs}){
     }
 
   const listOfSubs = merge(sub2, sub1)
-    
+
+  
 
    
 
