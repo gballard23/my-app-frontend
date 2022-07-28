@@ -2,6 +2,7 @@ import '../App.css';
 import React, { useEffect, useState } from 'react';
 import CompanyList from './CompanyList';
 import SubsidiaryList from './SubsidiaryList';
+import GameList from './GameList';
 
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
   return (
     <div className="App">
       <CompanyList coms={coms}/>
-      <SubsidiaryList subs={coms} />     
+      <SubsidiaryList subs={coms} />
+      <GameList />     
     </div>
   );
 }
