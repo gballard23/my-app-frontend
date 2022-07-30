@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import CompanyList from './CompanyList';
 import SubsidiaryList from './SubsidiaryList';
 import GameList from './GameList';
+import { createPortal } from 'react-dom';
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
     <div className="App">
       <CompanyList coms={coms}/>
       <SubsidiaryList subs={coms} />
-      <GameList />     
+      <GameList games={coms}/>     
     </div>
   );
 }
