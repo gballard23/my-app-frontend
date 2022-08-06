@@ -17,9 +17,11 @@ function App() {
 
   return (
     <div className="App">
-      <CompanyList coms={coms}/>
-      <SubsidiaryList subs={coms} />
-      <GameList games={coms}/>     
+      
+        <CompanyList coms={coms}/>
+        <SubsidiaryList subs={coms} />
+        <GameList games={coms}/>  
+        <Home/>   
     </div>
   );
 }
