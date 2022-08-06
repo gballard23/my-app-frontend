@@ -1,15 +1,10 @@
 import React from "react";
 
 function SubCard({subs, coms}){
-    console.log(subs)
 
     const comId = coms.map((x)=>(x))
 
     const i = subs.company_id - 1;
-
-    
-    
-
   
     return(
         <div className="subcard">

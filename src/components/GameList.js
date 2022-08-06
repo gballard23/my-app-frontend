@@ -1,12 +1,24 @@
 import React from "react";
 import GameCard from "./GameCard";
 
-function GameList(){
+function GameList({games}){
+    const getSubs = games.map((x) => (x.subsidiaries))
 
-    
+    const listSubs = getSubs.flat()
+
+    const getGames = listSubs.map((x) => (x.games))
+   
+
+    const allGames = getGames.flat()
+   
+
+    return(
     <div>
-
+        {allGames?.map((x) => (
+            <GameCard key={x.id} games={x} subs={listSubs}/>
+        ))}
     </div>
+    )
 
 }
 

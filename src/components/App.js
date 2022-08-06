@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import CompanyList from './CompanyList';
 import SubsidiaryList from './SubsidiaryList';
 import GameList from './GameList';
-import { createPortal } from 'react-dom';
+
 
 
 function App() {
