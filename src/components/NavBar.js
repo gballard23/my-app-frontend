@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+
 function NavBar(){
     return(
         <div className="navbar">
@@ -20,7 +21,7 @@ function NavBar(){
                      to="/companies"
                      exact
                      activeStyle={{
-                        color:'violet'
+                        color:"violet"
                      }}>
                         Companies
                      </NavLink>
@@ -30,7 +31,7 @@ function NavBar(){
                      to="/subsidiaries"
                      exact
                      activeStyle={{
-                        color:'violet'
+                        color:"violet"
                      }}>
                         Subsidiaries
                      </NavLink>
@@ -40,13 +41,14 @@ function NavBar(){
                      to="/games"
                      exact
                      activeStyle={{
-                        color:'violet'
+                        color:"violet"
                      }}>
                         Games
                      </NavLink>
                 </li>
             </ul>
-
         </div>
     )
 }
+
+export default NavBar;
