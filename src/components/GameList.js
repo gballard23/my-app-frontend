@@ -2,6 +2,7 @@ import React from "react";
 import GameCard from "./GameCard";
 
 function GameList({games}){
+    console.log(games)
     const getSubs = games.map((x) => (x.subsidiaries))
 
     const listSubs = getSubs.flat()

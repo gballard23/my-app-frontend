@@ -6,6 +6,7 @@ import SubsidiaryList from './SubsidiaryList';
 import GameList from './GameList';
 import NavBar from './NavBar';
 import Home from './Home';
+import Forms from './Forms';
 
 
 
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path='/games'>
             <GameList games={coms}/>
+          </Route>
+          <Route exact path='/forms'>
+            <Forms />
           </Route>
           <Route exact path='/'>
             <Home/>

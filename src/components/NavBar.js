@@ -46,6 +46,16 @@ function NavBar(){
                         Games
                      </NavLink>
                 </li>
+                <li className="formstab">
+                    <NavLink
+                    to="/forms"
+                    exact
+                    activeStyle={{
+                        color:"violet"
+                    }}>
+                        Forms
+                    </NavLink>
+                </li>
             </ul>
         </div>
     )
