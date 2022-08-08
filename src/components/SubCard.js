@@ -14,7 +14,7 @@ function SubCard({subs, coms}){
             </div>
             <div>
                 <ul>
-                    <li><strong>Net Worth:{subs.net_worth}</strong></li>
+                    <li><strong>Net Worth: {subs.net_worth}</strong></li>
                     <li><strong>Games: {subs.games.length}</strong></li>
                     <li><strong>Parent Company: {comId[i].name}</strong></li>
                 </ul>

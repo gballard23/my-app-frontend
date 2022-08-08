@@ -11,8 +11,8 @@ function GameCard({games, subs}){
             <h1>{games.title}</h1>
         </div>
         <div>
-            <h3>Released:{games.released}</h3>
-            <h3>Developer:{devName}</h3>
+            <h3>Released: {games.released}</h3>
+            <h3>Developer: {devName}</h3>
         </div>
     </div>
     )

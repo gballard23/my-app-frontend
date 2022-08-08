@@ -14,7 +14,7 @@ function App() {
   const [coms, setComs] = useState([]);
   
     useEffect(() => {
-      fetch('http://localhost:9292/companies')
+      fetch('http://localhost:9292')
         .then((r) => r.json())
         .then((data) => setComs(data))
     }, [])
@@ -34,7 +34,7 @@ function App() {
             <GameList games={coms}/>
           </Route>
           <Route exact path='/forms'>
-            <Forms />
+            <Forms coms={coms} setComs={setComs}/>
           </Route>
           <Route exact path='/'>
             <Home/>
