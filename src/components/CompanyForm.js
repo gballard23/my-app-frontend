@@ -1,6 +1,8 @@
 import React from "react";
 
 function CompanyForm(){
+
+
     return(
         <div>
             <h1>Companies</h1>
