@@ -13,12 +13,18 @@ function Form(){
 
     return ( 
         <div>
-            <button onClick={() => setShowCom(!showCom)}>{showCom ? "Add Company" : "X"}</button>
+            <div className="forms">
+            <button onClick={() => setShowCom(!showCom)}>{showCom ? "X" : "Add Company" }</button>
             {showCom ? <CompanyForm/> : null}
-            <button onClick={() => setShowSub(!showSub)}>Add Subsidiary</button>
+            </div>
+            <div className="forms">
+            <button onClick={() => setShowSub(!showSub)}>{showSub ? "X" : "Add Subsidiary" }</button>
             {showSub ? <SubForm/> : null}
-            <button onClick={() => setShowGame(!showGame)}>Add Game</button>
+            </div>
+            <div className="forms">
+            <button onClick={() => setShowGame(!showGame)}>{showGame ? "X" : "Add Game" }</button>
             {showGame ? <GameForm/> : null}
+            </div>
         </div>
     )
 }
