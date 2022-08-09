@@ -1,6 +1,14 @@
 import React from "react";
 
-function SubForm({handleChange, formData}){
+function SubForm({handleChange, formData, coms}){
+
+    const comsId = coms.map((x) => (<option value={x.id}>{x.name}</option>))
+    console.log(comsId)
+    
+    const newComsId = <option value={coms.length + 1}>none</option>
+
+    
+
     return(
         <div>
             <h2>Subsidiary Form</h2>
@@ -40,12 +48,10 @@ function SubForm({handleChange, formData}){
             <div>
                 <label>
                     Parent Company: 
-                        <input
-                        type="text"
-                        name="name"
-                        value={formData.company_id}
-                        onChange={handleChange}
-                        />
+                        <select type="text" name="name" value={formData.company_id} onChange={handleChange}>
+                            {comsId}
+                            {newComsId}
+                        </select>
                 </label>
             </div>
         </div>

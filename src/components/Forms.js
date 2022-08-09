@@ -9,16 +9,16 @@ function Form({coms, setComs}){
     const [showGame, setShowGame] = useState(false);
     const [submit, setSubmit] = useState(false);
     const [ formData, setFormData ] = useState({
-        name:null,
-        est:null,
-        net_worth:null,
-        subname:null,
-        subNet:null,
-        subEst:null,
+        name:"",
+        est:"",
+        net_worth:"",
+        subname:"",
+        subNet:"",
+        subEst:"",
         company_id:"",
-        title:null,
-        released:null,
-        sub_id:null
+        title:"",
+        released:"",
+        sub_id:""
 
     })
 
@@ -69,11 +69,11 @@ function Form({coms, setComs}){
                     </div>
                     <div className="forms">
                             <button onClick={() => setShowSub(!showSub)}>{showSub ? "X" : "Add Subsidiary" }</button>
-                            {showSub ? <SubForm  handleChange={handleChange} formData={formData} /> : null}
+                            {showSub ? <SubForm  handleChange={handleChange} formData={formData} coms={coms} /> : null}
                     </div>
                     <div className="forms">
                             <button onClick={() => setShowGame(!showGame)}>{showGame ? "X" : "Add Game" }</button>
-                            {showGame ? <GameForm handleChange={handleChange} formData={formData} /> : null}
+                            {showGame ? <GameForm handleChange={handleChange} formData={formData} coms={coms} /> : null}
                     </div>
                     <button onClick={() => setSubmit(!submit)} type="submit">Submit</button>
                 </form>    
