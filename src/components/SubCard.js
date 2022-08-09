@@ -2,9 +2,9 @@ import React from "react";
 
 function SubCard({subs, coms}){
 
-    const comId = coms.map((x)=>(x))
+    const parentCom = coms.filter((x) => (x.id === subs.company_id ))
 
-    const i = subs.company_id - 1;
+    const parentName = parentCom.map((x) => (x.name));
   
     return(
         <div className="subcard">
@@ -16,7 +16,7 @@ function SubCard({subs, coms}){
                 <ul>
                     <li><strong>Net Worth: {subs.net_worth}</strong></li>
                     <li><strong>Games: {subs.games.length}</strong></li>
-                    <li><strong>Parent Company: {comId[i].name}</strong></li>
+                    <li><strong>Parent Company: {parentName}</strong></li>
                 </ul>
             </div>
            
