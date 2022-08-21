@@ -4,7 +4,6 @@ import GameCard from "./GameCard";
 function GameList({games}){
     console.log(games)
     const getSubs = games.map((x) => (x.subsidiaries))
-
     const listSubs = getSubs.flat()
 
     const getGames = listSubs.map((x) => (x.games))

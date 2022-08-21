@@ -3,27 +3,10 @@ import CompanyForm from "./CompanyForm";
 import SubsidiaryForm from "./SubsidiaryForm";
 import GameForm from "./GameForm";
 
-function Form({coms, setComs}){
+function Forms({coms, setComs}){
     const [showCom, setShowCom] = useState(false);
     const [showSub, setShowSub] = useState(false);
     const [showGame, setShowGame] = useState(false);
-    const [formData, setFormData] = useState({
-        name:"",
-        est:"",
-        net_worth:"",
-        subName:"",
-        subNet:"",
-        subEst:"",
-        company_id:"",
-        title:"",
-        released:"",
-        sub_id:""
-
-    })
-
-
-
-
 
     return ( 
         <div>
@@ -34,7 +17,7 @@ function Form({coms, setComs}){
                     </div>
                     <div className="forms">
                             <button onClick={() => setShowSub(!showSub)}>{showSub ? "X" : "Add Subsidiary" }</button>
-                            {showSub ? <SubsidiaryForm coms={coms} setComs={setComs} formData={formData} /> : null}
+                            {showSub ? <SubsidiaryForm coms={coms} setComs={setComs} /> : null}
                     </div>
                     <div className="forms">
                             <button onClick={() => setShowGame(!showGame)}>{showGame ? "X" : "Add Game" }</button>
@@ -45,4 +28,4 @@ function Form({coms, setComs}){
     )
 }
 
-export default Form;
+export default Forms;

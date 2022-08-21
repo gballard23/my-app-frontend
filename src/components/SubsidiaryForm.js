@@ -14,7 +14,7 @@ function SubsidiaryForm({ coms, setComs }){
     const comsId = coms.map((x) => (<option key={x.id} value={x.id}>{x.name}</option>))
 
     function handleChange(event){
-        event.preventDefault()
+
         setFormData({
             ...formData, 
             [event.target.name]: event.target.value,
