@@ -1,40 +1,47 @@
 import React, { useState } from "react";
 
 function SubsidiaryForm({ coms, setComs }){
-
-    const [formData, setFormData] = useState({
-        subName:"",
-        subNet:"",
-        subEst:"",
-        company_id:"",
-
-    })
-
+    const [ subName, setSubName ] = useState("");
+    const [ subNet, setSubNet ] = useState(0);
+    const [ subEst, setSubEst ] = useState(0);
+    const [ comId, setComId ] = useState(0);
     //comsId: Obtains the IDs of the parent companies by name but uses the id as its value stored in the server for the subsidiary using map
     const comsId = coms.map((x) => (<option key={x.id} value={x.id}>{x.name}</option>))
 
-    function handleChange(event){
-
-        setFormData({
-            ...formData, 
-            [event.target.name]: event.target.value,
-        })
+    function handleNameChange(event){
+        setSubName(event.target.value)
     }
+
+    function handleNetChange(event){
+        setSubNet(event.target.value)
+    }
+
+    function handleEstChange(event){
+        setSubEst(event.target.value)
+    }
+
+    function handleIdChange(event){
+        setComId(event.target.value)
+    }
+
+       
+
 
     function handleSubmit(e){
         e.preventDefault();
+        const formData = {
+            name: subName,
+            net_worth: subNet,
+            established: subEst,
+            company_id: comId,
+        };
+
         fetch("http://localhost:9292/subsidiaries", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
             },
-            body: JSON.stringify(
-                {
-                        name:formData.subName,
-                        net_worth:formData.subNet,
-                        established:formData.subEst,
-                        company_id:formData.company_id,
-                })
+            body: JSON.stringify(formData)
         })
         .then((r) => r.json())
         .then((com) => setComs([...coms, com]))
@@ -52,8 +59,8 @@ function SubsidiaryForm({ coms, setComs }){
                                 <input
                                 type="text"
                                 name="subName"
-                                value={formData.subName}
-                                onChange={handleChange}
+                                value={subName}
+                                onChange={handleNameChange}
                             />
                         </label>
                     </div>
@@ -63,8 +70,8 @@ function SubsidiaryForm({ coms, setComs }){
                                 <input
                                 type="text"
                                 name="subYear"
-                                value={formData.subEst}
-                                onChange={handleChange}
+                                value={subEst}
+                                onChange={handleEstChange}
                                 />
                         </label>
                     </div>
@@ -74,15 +81,15 @@ function SubsidiaryForm({ coms, setComs }){
                                 <input
                                 type="text"
                                 name="subNet"
-                                value={formData.subNet}
-                                onChange={handleChange}
+                                value={subNet}
+                                onChange={handleNetChange}
                                 />
                         </label>
                     </div>    
                     <div>
                         <label>
                             Parent Company: 
-                                <select type="text" name="comsId" value={formData.company_id} onChange={handleChange}>
+                                <select type="text" name="comsId" value={comId} onChange={handleIdChange}>
                                     {comsId}
                                 </select>
                         </label>
