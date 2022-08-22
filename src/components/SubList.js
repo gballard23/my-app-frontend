@@ -1,7 +1,7 @@
 import React from "react";
 import SubCard from "./SubCard";
 
-function SubsidiaryList({subs}){
+function SubList({subs}){
 
     const allSubs = subs.map((x) => (x.subsidiaries)); 
    
@@ -19,4 +19,4 @@ function SubsidiaryList({subs}){
     )
 }
 
-export default SubsidiaryList;
+export default SubList;

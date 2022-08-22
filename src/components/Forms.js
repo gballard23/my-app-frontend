@@ -1,29 +1,37 @@
-import React, { useState }  from "react";
-import CompanyForm from "./CompanyForm";
-import SubsidiaryForm from "./SubsidiaryForm";
+import React, { useEffect, useState }  from "react";
+import ComForm from "./ComForm";
+import SubForm from "./SubForm";
 import GameForm from "./GameForm";
 
 function Forms({coms, setComs}){
-    const [showCom, setShowCom] = useState(false);
-    const [showSub, setShowSub] = useState(false);
-    const [showGame, setShowGame] = useState(false);
+ 
+
+const [ page, setPage ] = useState();
+
+    function handlePageChange(){
+        setPage(<><h1>Submitted!</h1></>)
+    }
+
+    useEffect(() => {
+        setTimeout(() => {
+           setPage(<section>
+            <div className="forms">
+                    {<ComForm coms={coms} setComs={setComs} change={handlePageChange} />}
+            </div>
+            <div className="forms">
+                    {<SubForm coms={coms} setComs={setComs} change={handlePageChange} />}
+            </div>
+            <div className="forms">
+                    {<GameForm coms={coms} setComs={setComs} change={handlePageChange} />}
+            </div>
+    </section>)
+        }, 1000);
+
+    }, [coms, setComs])
 
     return ( 
         <div>
-            <section>
-                    <div className="forms">
-                            <button onClick={() => setShowCom(!showCom)}>{showCom ? "X" : "Add Company" }</button>
-                            {showCom ? <CompanyForm coms={coms} setComs={setComs} /> : null}
-                    </div>
-                    <div className="forms">
-                            <button onClick={() => setShowSub(!showSub)}>{showSub ? "X" : "Add Subsidiary" }</button>
-                            {showSub ? <SubsidiaryForm coms={coms} setComs={setComs} /> : null}
-                    </div>
-                    <div className="forms">
-                            <button onClick={() => setShowGame(!showGame)}>{showGame ? "X" : "Add Game" }</button>
-                            {showGame ? <GameForm coms={coms} setComs={setComs} /> : null}
-                    </div>
-            </section>
+           {page}
         </div>
     )
 }

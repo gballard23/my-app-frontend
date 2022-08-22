@@ -1,39 +1,43 @@
 import React, { useState } from "react";
 
 
-function CompanyForm({coms, setComs}){
+function ComForm({coms, setComs, change}){
+    const [ name, setName ] = useState("");
+    const [ est, setEst ] = useState(0);
+    const [ net, setNet ] = useState(0);
 
-    const [formData, setFormData] = useState({
-        name:"",
-        est:"",
-        net_worth:"",
-
-    })
     
-    function handleChange(event){
-        setFormData({
-            ...formData, 
-            [event.target.name]: event.target.value,
-        })
+    function handleNameChange(event){
+        setName(event.target.value)
+    }
+
+    function handleEstChange(event){
+        setEst(event.target.value)
+    }
+
+    function handleNetChange(event){
+        setNet(event.target.value)
     }
 
     function handleSubmit(e){
         e.preventDefault();
+        const formData = {
+            name: name,
+            established: est,
+            net_worth: net,
+
+        }
+
         fetch("http://localhost:9292/companies", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
             },
-            body: JSON.stringify(
-                {
-                    name:formData.name,
-                    established:formData.est,
-                    net_worth:formData.net_worth,
-
-                })
+            body: JSON.stringify(formData)
         })
         .then((r) => r.json())
         .then((com) => setComs([...coms, com]))
+        change()
     }
 
     return(
@@ -46,9 +50,9 @@ function CompanyForm({coms, setComs}){
                             Company Name:
                                 <input
                                 type="text"
-                                name="comsName"
-                                value={formData.name}
-                                onChange={handleChange}
+                                name="name"
+                                value={name}
+                                onChange={handleNameChange}
                             />
                         </label>
                     </div>
@@ -57,9 +61,9 @@ function CompanyForm({coms, setComs}){
                             Year Established:
                                 <input
                                 type="text"
-                                name="comsEst"
-                                value={formData.est}
-                                onChange={handleChange}
+                                name="est"
+                                value={est}
+                                onChange={handleEstChange}
                                 />
                         </label>
                     </div>
@@ -68,9 +72,9 @@ function CompanyForm({coms, setComs}){
                             Net Worth:
                                 <input
                                 type="text"
-                                name="comsNet"
-                                value={formData.net_worth}
-                                onChange={handleChange}
+                                name="net"
+                                value={net}
+                                onChange={handleNetChange}
                                 />
                         </label>
                     </div>
@@ -81,4 +85,4 @@ function CompanyForm({coms, setComs}){
     )
 }
 
-export default CompanyForm;
+export default ComForm;

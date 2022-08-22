@@ -1,47 +1,48 @@
 import React, { useState } from "react";
 
-function GameForm({coms, setComs}){
+function GameForm({coms, setComs, change}){
+    const [ title, setTitle ] = useState("");
+    const [ released, setReleased ] = useState(0);
+    const [ id, setId ] = useState(0);
 
-    const [formData, setFormData] = useState({
-        title:"",
-        released:"",
-        sub_id:""
-
-    })
-
-    //subs & subsArr: obtains the subsidiaries to then use flat() to combine the array of objects.
     const subs = coms.map((x) => (x.subsidiaries));
     const subsArr = subs.flat();
-    console.log(subsArr)
 
-    //subId & newSubId: Does the same as comsId & newComsId but for games 
-    const subId = subsArr.map((x) => (<option key={x.id} value={x.id}>{x.name}</option>))
-    console.log(subId)
+    const allSubsId = subsArr.map((x) => (<option key={x.id} value={x.id}>{x.name}</option>))
+    
 
-    function handleChange(event){
-        setFormData({
-            ...formData, 
-            [event.target.name]: event.target.value,
-        })
+    function handleTitleChange(event){
+        setTitle(event.target.value)
+    }
+
+    function handleReleaseChange(event){
+        setReleased(event.target.value)
+    }
+
+    function handleIdChange(event){
+        setId(event.target.value)
     }
 
     function handleSubmit(e){
         e.preventDefault();
+
+        const formData = {
+            title: title,
+            released: released,
+            subsidiary_id: id,
+        }
+
+
         fetch("http://localhost:9292/games", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
             },
-            body: JSON.stringify(
-                {
-                            title:formData.title,
-                            released: formData.released,
-                            subsidiary_id:formData.sub_id,
-
-                })
+            body: JSON.stringify(formData)
         })
         .then((r) => r.json())
         .then((com) => setComs([...coms, com]))
+        change()
     }
 
     return(
@@ -50,33 +51,33 @@ function GameForm({coms, setComs}){
                 <div>
                     <h1>Games</h1>
                     <div>
-                        <label>
-                            <div>
+                        <div>
+                            <label>
                                 Game Title: 
                                     <input
                                     type="text"
                                     name="title"
-                                    value={formData.title}
-                                    onChange={handleChange}
+                                    value={title}
+                                    onChange={handleTitleChange}
                                     />
-                            </div>
-                        </label>
-                        <label>
-                            <div>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
                                 Year Released: 
                                     <input
                                     type="text"
                                     name="released"
-                                    value={formData.released}
-                                    onChange={handleChange}
+                                    value={released}
+                                    onChange={handleReleaseChange}
                                     />
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                         <div>
                             <label>
                                     Developer: 
-                                        <select name="dev" value={formData.sub_id} onChange={handleChange}>
-                                            {subId}
+                                        <select name="dev" value={id} onChange={handleIdChange}>
+                                            {allSubsId}
                                         </select>       
                             </label>
                         </div>

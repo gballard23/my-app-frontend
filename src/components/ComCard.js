@@ -1,6 +1,6 @@
 import React from "react";
 
-function CompanyCard({coms}){
+function ComCard({coms}){
 
     const subs = coms.subsidiaries.map((num) => (num.games))
     console.log(subs)
@@ -25,4 +25,4 @@ function CompanyCard({coms}){
     )
 }
 
-export default CompanyCard;
+export default ComCard;
