@@ -10,12 +10,13 @@ function GameList({games}){
    
 
     const allGames = getGames.flat()
-   
+
+    console.log(allGames)
 
     return(
     <div>
         {allGames?.map((x) => (
-            <GameCard key={x.id} games={x} subs={listSubs}/>
+            <GameCard key={x.id} games={x} subs={listSubs} />
         ))}
     </div>
     )

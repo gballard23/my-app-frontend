@@ -27,13 +27,13 @@ function App() {
        <NavBar />
         <Switch>
           <Route exact path='/companies'>
-            <ComList coms={coms}/>
+            <ComList coms={coms} setComs={setComs} />
           </Route>
           <Route exact path='/subsidiaries'>
             <SubList subs={coms} />
           </Route>
           <Route exact path='/games'>
-            <GameList games={coms}/>
+            <GameList games={coms} setGames={setComs} />
           </Route>
           <Route exact path='/forms'>
             <Forms coms={coms} setComs={setComs}/>
