@@ -26,7 +26,7 @@ function GameForm({ games, setGames, ops, change}){
             subsidiary_id: dev,
         }
 
-        fetch("http://localhost:9292/subsidiaries", {
+        fetch("http://localhost:9292/games", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
