@@ -1,9 +1,9 @@
 import React from "react";
 
 function GameCard({games, subs}){
+    const devId = subs.filter((x) => (x.id === games.subsidiary_id))
 
-    const developer = subs.filter((x) => (x.id === games.subsidiary_id))
-    const devName = developer.map((x) => (x.name)) 
+    const devName = devId.map((x) => (x.name))
 
     return (
     <div>

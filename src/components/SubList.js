@@ -1,18 +1,14 @@
 import React from "react";
 import SubCard from "./SubCard";
 
-function SubList({subs}){
 
-    const allSubs = subs.map((x) => (x.subsidiaries)); 
-   
-    const listOfSubs = allSubs.flat()
-    
+function SubList({subs, coms}){
+    console.log(subs)
 
-    
     return (
         <div>
-            {listOfSubs?.map((x, i) => ( 
-                <SubCard key={i} subs={x} coms={subs}/>
+            {subs?.map((x, i) => ( 
+                <SubCard key={i} subs={x} coms={coms.filter((c) => (c.id === x?.company_id))}/>
             ))}
         </div>
 

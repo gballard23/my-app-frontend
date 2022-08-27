@@ -11,15 +11,14 @@ import Forms from './Forms';
 
 
 function App() {
-  const [coms, setComs] = useState([]);
-  
-  console.log(coms)
-  
+  const [ coms, setComs] = useState([]);
+  const [ subs, setSubs ] = useState([]);
+  const [ games, setGames ] = useState([]); 
     useEffect(() => {
       fetch('http://localhost:9292')
         .then((r) => r.json())
-        .then((data) => setComs(data))
-    }, [])
+        .then((data) => ((setComs(data), setSubs(data), setGames(data))))
+    }, [])  
 
   return (
     <div className="App">
@@ -27,16 +26,16 @@ function App() {
        <NavBar />
         <Switch>
           <Route exact path='/companies'>
-            <ComList coms={coms} setComs={setComs} />
+            <ComList coms={coms} setComs={setComs}/>
           </Route>
           <Route exact path='/subsidiaries'>
-            <SubList subs={coms} />
+            <SubList subs={subs.map((x) => (x?.subsidiaries)).flat()} coms={coms} />
           </Route>
           <Route exact path='/games'>
-            <GameList games={coms} setGames={setComs} />
+            <GameList games={games.map((x) => (x.subsidiaries))} />
           </Route>
           <Route exact path='/forms'>
-            <Forms coms={coms} setComs={setComs}/>
+            <Forms coms={coms} setComs={setComs} ops={coms.map((x) => (x.subsidiaries))} subs={subs} setSubs={setSubs} games={games} setGames={setGames}/>
           </Route>
           <Route exact path='/'>
             <Home/>

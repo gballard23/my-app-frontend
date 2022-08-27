@@ -1,31 +1,28 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 
-function SubForm({ coms, setComs, change }){
+function SubForm({subs, setSubs, coms, change}){
     const [ name, setName ] = useState("");
-    const [ net, setNet ] = useState(0);
     const [ est, setEst ] = useState(0);
-    const [ id, setId ] = useState(0);
-    //comsId: Obtains the IDs of the parent companies by name but uses the id as its value stored in the server for the subsidiary using map
-    const comsId = coms.map((x) => (<option key={x.id} value={x.id}>{x.name}</option>))
+    const [ net, setNet ] = useState(0);
+    const [ comp, setComp ] = useState(0);
 
+    
+    
     function handleNameChange(event){
         setName(event.target.value)
-    }
-
-    function handleNetChange(event){
-        setNet(event.target.value)
     }
 
     function handleEstChange(event){
         setEst(event.target.value)
     }
 
-    function handleIdChange(event){
-        setId(event.target.value)
+    function handleNetChange(event){
+        setNet(event.target.value)
     }
 
-       
-
+    function handleCompChange(event){
+        setComp(event.target.value)
+    }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -33,8 +30,9 @@ function SubForm({ coms, setComs, change }){
             name: name,
             net_worth: net,
             established: est,
-            company_id: id,
-        };
+            company_id: comp, 
+
+        }
 
         fetch("http://localhost:9292/subsidiaries", {
             method: "POST",
@@ -44,25 +42,34 @@ function SubForm({ coms, setComs, change }){
             body: JSON.stringify(formData)
         })
         .then((r) => r.json())
-        .then((com) => setComs([...coms, com]))
+        .then((sub) => setSubs([...subs[comp - 1].subsidiaries, sub]))
         change()
     }
-
-
     return(
         <div>
-            <form onSubmit={handleSubmit} >
+<form onSubmit={handleSubmit}>
                 <div>
                     <h2>Subsidiary Form</h2>
                     <div>
                         <label>
-                            Subsidiary Name:
+                             Name:
                                 <input
                                 type="text"
                                 name="name"
                                 value={name}
                                 onChange={handleNameChange}
                             />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Net Worth:
+                                <input
+                                type="text"
+                                name="net"
+                                value={net}
+                                onChange={handleNetChange}
+                                />
                         </label>
                     </div>
                     <div>
@@ -78,26 +85,16 @@ function SubForm({ coms, setComs, change }){
                     </div>
                     <div>
                         <label>
-                            Net Worth:
-                                <input
-                                type="text"
-                                name="subNet"
-                                value={net}
-                                onChange={handleNetChange}
-                                />
-                        </label>
-                    </div>    
-                    <div>
-                        <label>
-                            Parent Company: 
-                                <select name="id" value={id} onChange={handleIdChange}>
-                                    {comsId}
-                                </select>
+                            Parent Company:
+                            <select name="parent" value={comp} onChange={handleCompChange}>
+                            {coms.map((x) => (<option key={x.id} value={x.id}>{x.name}</option>))}
+                            </select>
                         </label>
                     </div>
                 </div>
                 <button type="submit">Submit</button>
             </form>
+
         </div>
     )
 }

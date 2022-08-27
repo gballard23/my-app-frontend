@@ -1,39 +1,32 @@
 import React, { useState } from "react";
 
-function GameForm({coms, setComs, change}){
+function GameForm({ games, setGames, ops, change}){
     const [ title, setTitle ] = useState("");
-    const [ released, setReleased ] = useState(0);
-    const [ id, setId ] = useState(0);
+    const [ release, setRelease ] = useState(0);
+    const [ dev, setDev ] = useState(0);
 
-    const subs = coms.map((x) => (x.subsidiaries));
-    const subsArr = subs.flat();
-
-    const allSubsId = subsArr.map((x) => (<option key={x.id} value={x.id}>{x.name}</option>))
-    
-
+    console.log(games)
     function handleTitleChange(event){
         setTitle(event.target.value)
     }
 
     function handleReleaseChange(event){
-        setReleased(event.target.value)
+        setRelease(event.target.value)
     }
 
-    function handleIdChange(event){
-        setId(event.target.value)
+    function handleDevChange(event){
+        setDev(event.target.value)
     }
 
     function handleSubmit(e){
         e.preventDefault();
-
         const formData = {
             title: title,
-            released: released,
-            subsidiary_id: id,
+            released: release,
+            subsidiary_id: dev,
         }
 
-
-        fetch("http://localhost:9292/games", {
+        fetch("http://localhost:9292/subsidiaries", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
@@ -41,50 +34,48 @@ function GameForm({coms, setComs, change}){
             body: JSON.stringify(formData)
         })
         .then((r) => r.json())
-        .then((com) => setComs([...coms, com]))
+        .then((game) => setGames([...games, game]))
         change()
     }
-
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+<form onSubmit={handleSubmit}>
                 <div>
-                    <h1>Games</h1>
+                    <h2>Game Form</h2>
                     <div>
-                        <div>
-                            <label>
-                                Game Title: 
-                                    <input
-                                    type="text"
-                                    name="title"
-                                    value={title}
-                                    onChange={handleTitleChange}
-                                    />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                Year Released: 
-                                    <input
-                                    type="text"
-                                    name="released"
-                                    value={released}
-                                    onChange={handleReleaseChange}
-                                    />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                    Developer: 
-                                        <select name="dev" value={id} onChange={handleIdChange}>
-                                            {allSubsId}
-                                        </select>       
-                            </label>
-                        </div>
+                        <label>
+                             Title:
+                                <input
+                                type="text"
+                                name="name"
+                                value={title}
+                                onChange={handleTitleChange}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Released:
+                                <input
+                                type="text"
+                                name="released"
+                                value={release}
+                                onChange={handleReleaseChange}
+                                />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Developer:
+                            <select name="parent" value={dev} onChange={handleDevChange}>
+                            {ops.map((x) => (<option key={x.id} value={x.id}>{x.name}</option>))}
+                            </select>
+                        </label>
                     </div>
                 </div>
                 <button type="submit">Submit</button>
             </form>
+
         </div>
     )
 }

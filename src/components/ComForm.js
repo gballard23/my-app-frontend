@@ -6,6 +6,7 @@ function ComForm({coms, setComs, change}){
     const [ est, setEst ] = useState(0);
     const [ net, setNet ] = useState(0);
 
+    console.log(coms)
     
     function handleNameChange(event){
         setName(event.target.value)
@@ -47,7 +48,7 @@ function ComForm({coms, setComs, change}){
                     <h2>Company Form</h2>
                     <div>
                         <label>
-                            Company Name:
+                             Name:
                                 <input
                                 type="text"
                                 name="name"

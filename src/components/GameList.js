@@ -1,22 +1,27 @@
 import React from "react";
 import GameCard from "./GameCard";
 
+
 function GameList({games}){
     console.log(games)
-    const getSubs = games.map((x) => (x.subsidiaries))
-    const listSubs = getSubs.flat()
 
-    const getGames = listSubs.map((x) => (x.games))
-   
+    function mergeSubs(subs){
+        let allSubs = subs.flat()
+        return allSubs.map((x) => (x.games)) 
+    }
+   let allGames = mergeSubs(games).flat()
 
-    const allGames = getGames.flat()
+   function getAllDeveloperID(subs){
+    let allDevelopers = subs.flat()
+    return allDevelopers
+   }
 
-    console.log(allGames)
+   let allDevs = getAllDeveloperID(games)
 
     return(
     <div>
-        {allGames?.map((x) => (
-            <GameCard key={x.id} games={x} subs={listSubs} />
+        {allGames.map((x, i) => (
+            <GameCard key={i} games={x} subs={allDevs} />
         ))}
     </div>
     )
