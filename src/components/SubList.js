@@ -7,8 +7,8 @@ function SubList({subs, coms}){
 
     return (
         <div>
-            {subs?.map((x, i) => ( 
-                <SubCard key={i} subs={x} coms={coms.filter((c) => (c.id === x?.company_id))}/>
+            {subs.map((x, i) => ( 
+                <SubCard key={i} subs={x} coms={coms.filter((c) => (c.id === x.company_id))}/>
             ))}
         </div>
 

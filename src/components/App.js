@@ -17,8 +17,23 @@ function App() {
     useEffect(() => {
       fetch('http://localhost:9292')
         .then((r) => r.json())
-        .then((data) => ((setComs(data), setSubs(data), setGames(data))))
+        .then((data) => setComs(data))
     }, [])  
+
+    useEffect(() => {
+      fetch('http://localhost:9292/subsidiaries')
+        .then((r) => r.json())
+        .then((data) => setSubs(data))
+    }, [])  
+
+    useEffect(() => {
+      fetch('http://localhost:9292/games')
+        .then((r) => r.json())
+        .then((data) => setGames(data))
+    }, [])  
+
+console.log(subs)
+console.log(games)
 
   return (
     <div className="App">
@@ -29,13 +44,13 @@ function App() {
             <ComList coms={coms} setComs={setComs}/>
           </Route>
           <Route exact path='/subsidiaries'>
-            <SubList subs={subs.map((x) => (x?.subsidiaries)).flat()} coms={coms} />
+            <SubList subs={subs} coms={coms} />
           </Route>
           <Route exact path='/games'>
-            <GameList games={games.map((x) => (x.subsidiaries))} />
+            <GameList games={games} />
           </Route>
           <Route exact path='/forms'>
-            <Forms coms={coms} setComs={setComs} ops={coms.map((x) => (x.subsidiaries))} subs={subs} setSubs={setSubs} games={games} setGames={setGames}/>
+            <Forms coms={coms} setComs={setComs} ops={subs} subs={subs} setSubs={setSubs} games={games} setGames={setGames}/>
           </Route>
           <Route exact path='/'>
             <Home/>

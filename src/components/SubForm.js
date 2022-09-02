@@ -42,7 +42,7 @@ function SubForm({subs, setSubs, coms, change}){
             body: JSON.stringify(formData)
         })
         .then((r) => r.json())
-        .then((sub) => setSubs([...subs[comp - 1].subsidiaries, sub]))
+        .then((sub) => setSubs([...subs, sub]))
         change()
     }
     return(
