@@ -44,10 +44,10 @@ console.log(games)
             <ComList coms={coms} setComs={setComs}/>
           </Route>
           <Route exact path='/subsidiaries'>
-            <SubList subs={subs} coms={coms} />
+            <SubList subs={subs} coms={coms} games={games} />
           </Route>
           <Route exact path='/games'>
-            <GameList games={games} />
+            <GameList games={games} subs={subs} />
           </Route>
           <Route exact path='/forms'>
             <Forms coms={coms} setComs={setComs} ops={subs} subs={subs} setSubs={setSubs} games={games} setGames={setGames}/>
