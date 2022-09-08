@@ -41,7 +41,7 @@ console.log(games)
        <NavBar />
         <Switch>
           <Route exact path='/companies'>
-            <ComList coms={coms} setComs={setComs}/>
+            <ComList coms={coms} setComs={setComs} subs={subs} games={games}/>
           </Route>
           <Route exact path='/subsidiaries'>
             <SubList subs={subs} coms={coms} games={games} />

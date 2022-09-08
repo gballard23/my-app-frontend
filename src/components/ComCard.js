@@ -1,10 +1,31 @@
 import React, { useState } from "react";
 
-function ComCard({coms, onDeleteCom, onUpdate}){
+function ComCard({coms, subs, games, onDeleteCom, onUpdate}){
     const [ edit, setEdit ] = useState(false);
     const [ newNet, setNewNet ] = useState(0)
     const [ loading, setLoading ] = useState(false)
+
+//     const arr1 = [{id:'1',name:'A'},{id:'2',name:'B'},{id:'3',name:'C'},{id:'4',name:'D'}];
+// const arr2 = [{id:'1',name:'A',state:'healthy'},{id:'3',name:'C',state:'healthy'}];
+// const filterByReference = (arr1, arr2) => {
+//    let res = [];
+//    res = arr1.filter(el => {
+//       return !arr2.find(element => {
+//          return element.id === el.id;
+//       });
+//    });
+//    return res;
+// }
+//console.log(filterByReference(arr1, arr2));
     
+  const sumOfSubs = subs.filter((x) => (x.company_id === coms.id))
+
+  const subsIds = sumOfSubs.map((x) => x.id)
+
+  const totalGames = games.filter((x) => subsIds.includes(x.subsidiary_id))
+  console.log(totalGames)
+
+  
 
 
     function handleDeleteClick(){
@@ -70,7 +91,9 @@ function ComCard({coms, onDeleteCom, onUpdate}){
                 <h3>Est.{coms.established}</h3>
                 <div id="comatt">
                     <ul>   
-                      <li>{editForm}</li> 
+                      <li>{editForm}</li>
+                      <li><h5>Subsidiaries: {sumOfSubs.length}</h5></li>
+                      <li><h5>Games: {totalGames.length}</h5></li> 
                     </ul>    
                 </div>
                 {buttonChange}
