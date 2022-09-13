@@ -32,9 +32,6 @@ function App() {
         .then((data) => setGames(data))
     }, [])  
 
-console.log(subs)
-console.log(games)
-
   return (
     <div className="App">
       <BrowserRouter>

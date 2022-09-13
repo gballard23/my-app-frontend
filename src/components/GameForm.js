@@ -5,7 +5,6 @@ function GameForm({ games, setGames, ops, change}){
     const [ release, setRelease ] = useState(0);
     const [ dev, setDev ] = useState(0);
 
-    console.log(games)
     function handleTitleChange(event){
         setTitle(event.target.value)
     }

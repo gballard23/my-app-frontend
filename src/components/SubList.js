@@ -3,7 +3,6 @@ import SubCard from "./SubCard";
 
 
 function SubList({subs, coms, games}){
-    console.log(subs)
 
     return (
         <div>
